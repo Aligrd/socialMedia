@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext";
 import { FaTimes } from "react-icons/fa";
@@ -9,6 +9,8 @@ const DropDownMenu = ({ clickState }) => {
   //   const [isMenuClicked, setIsMenuClicked] = useState();
 
   const [userAuthContext, setuserAuthContext] = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const logOut = () => {
     localStorage.removeItem("accessToken");

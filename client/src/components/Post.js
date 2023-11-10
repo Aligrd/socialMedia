@@ -14,8 +14,13 @@ function Post() {
 
   const [showOptionMenu, setShowOptionMenu] = useState(false);
 
-  // const [like, setLikes] = useState(0);
-  // const [isLiked, setIsLiked] = useState(false);
+  //TODO make three dot option menu and set edit and delete in there
+  //TODO edit this post via sending POST request => http://localhost:3001/posts/edit/:id backend route
+  //TODO delete this post via sending DELETE request => http://localhost:3001/posts/edit/:id backend route
+  //! show delete and edit buttom just to the owner of  post by checking post.UserId and authContext.id
+
+  //TODO we need a pop up windows modal to for post edit
+
   const [render, setRender] = useState(false); // for rerendring of component in case new comment added in commentform Component
 
   const [AppAuthCOntext, setAppAuthContext] = useContext(AuthContext); //! user AuthContext
@@ -32,7 +37,7 @@ function Post() {
       setComments(response.data);
     });
   }, [render]);
-
+  console.log(post);
   //TODO we need make this xhtml code volume lesser
   return (
     <div className="flex h-screen w-screen">

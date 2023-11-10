@@ -22,8 +22,8 @@ function CreatePost() {
       .post("http://localhost:3001/posts", data, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
-      .then((response) => {
-        navigate("/");
+      .then((res) => {
+        !res.data.error ? navigate("/") : console.log("post didnt submitted");
       });
   };
 

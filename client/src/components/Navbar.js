@@ -5,6 +5,7 @@ import AuthContext from "../Context/AuthContext";
 import NavProfile from "./NavProfile";
 import NavMenu from "./Navbar/NavMenu";
 import NavbarLoginSection from "../components/Navbar/NavbarLoginSection";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   // const [state, setState] = useState(true);

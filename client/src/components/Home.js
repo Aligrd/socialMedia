@@ -18,7 +18,6 @@ function Home() {
   useEffect(() => {
     axios.get("http://localhost:3001/posts").then((res) => {
       setData(res.data);
-      console.log(res.data);
     });
   }, []);
 

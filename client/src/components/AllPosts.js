@@ -1,4 +1,4 @@
-import { useFetcher, useNavigate, useParams } from "react-router-dom";
+import { Link, useFetcher, useNavigate, useParams } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../Context/AuthContext";
 import ThemeContext from "../Context/ThemeContext";
@@ -50,7 +50,10 @@ function Post({ props }) {
       <p className="text-lg w-24">{props.postText}</p>
 
       <div className="bg-emerald-800 flex justify-between  items-center w-full text-white rounded-b-md box-border">
-
+        <div className="bg-red-300 border border-1 border-stone-300 text-black p-1">
+          <Link to={`/profile/${props.UserId}`}>{props.username}</Link>
+        </div>
+        {/* WE WANT USERNAME BE A COMPONENT WITCH WE CONTAIN USER PROFILE IMAGE INIT */}
         {userAuthContext.authStatus && (
           <Like {...{ PostId: Postid, userAuthContext: userAuthContext }} />
         )}

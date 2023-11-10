@@ -90,6 +90,8 @@ function App() {
             <Route path="/signup" exact Component={SignUp} />
             <Route path="/login" exact Component={Login} />
             <Route path="profile/:id" Component={Profile} />
+            {/* <Route path="profile" Component={Profile} /> */}
+
             {/* change the routing comonenet if user is logout you unauth users
           wanted to reach a route specefic for logged in users */}
             {authState.authStatus ? (
