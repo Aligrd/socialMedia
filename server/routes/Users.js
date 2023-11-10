@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
   res.json(usersList);
 });
 
-//get current logged in user data
+//! get current logged in user data
 router.get("/user", validateToken, async (req, res) => {
   const username = req.user.username;
   const user = await Users.findOne({
@@ -19,25 +19,22 @@ router.get("/user", validateToken, async (req, res) => {
       username: username,
     },
   });
+
   res.json(user);
 });
+//! gewt user by its id
+router.get("/profile/:id", async (req, res) => {
+  let { id } = req.params;
 
-//get information of a user
-router.get("/id", validateToken, async (req, res) => {
-  const { username } = req.body;
-
-  const user = await Users.findOne({
-    where: {
-      username: username,
+  const user = await Users.findByPk(id, {
+    attributes: {
+      exclude: ["password"],
     },
   });
-  if (!user) {
-    res.json({ error: "there is no user with this credentials" });
-  } else {
-    res.json(user);
-  }
-});
 
+  res.json(user);
+});
+//! signin
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
 
@@ -61,7 +58,7 @@ router.post("/register", async (req, res) => {
   }
 });
 const secret = randomStringGenerator.generate(10); // random generated string for hashing
-//login and authentication!
+//!  login and authentication!
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -101,7 +98,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// validate user accessToken to ensure the authentication
+//! validate user accessToken to ensure the authentication
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);
 });

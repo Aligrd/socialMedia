@@ -4,7 +4,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-
 function CreatePost() {
   let navigate = useNavigate();
 

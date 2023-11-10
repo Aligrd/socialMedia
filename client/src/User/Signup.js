@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AppContext } from "../Context/AppContext";
+import { AppContext } from "../Context/ThemeContext";
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
@@ -10,6 +10,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //TODO we dont evaluate user entry 
   // const ThemeContext = useContext(AppContext); //context for Theme (future)
   const navigate = useNavigate();
   const handleRegistration = () => {
@@ -72,10 +73,7 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button
-              className="mt-10 bg-zinc-400 h-14 w-40 rounded-xl self-center hover:bg-gray-500 border border-2 border-stone-300 "
-              onClick={handleRegistration}
-            >
+            <button className="mt-10 bg-zinc-400 h-14 w-40 rounded-xl self-center hover:bg-gray-500 border-2 border-stone-300 ">
               Submit
             </button>
           </form>

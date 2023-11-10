@@ -2,7 +2,7 @@ import axios from "axios";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import AuthContext from "../Hooks/AuthContext";
+import AuthContext from "../Context/AuthContext";
 import Comment from "./Comment";
 import Commnetform from "./Commnetform";
 import Like from "./Like";

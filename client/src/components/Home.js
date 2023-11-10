@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AllPosts from "./AllPosts";
 import Login from "../User/Login";
-import AuthContext from "../Hooks/AuthContext";
+import AuthContext from "../Context/AuthContext";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 function Home() {
   const [userAuth] = useContext(AuthContext);

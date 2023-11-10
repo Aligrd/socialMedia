@@ -11,13 +11,15 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 
 //get all posts
 router.get("/", async (req, res) => {
-  const listOfPosts = await Posts.findAll({ include: [_db.Likes] });
+  const listOfPosts = await Posts.findAll({
+    include: [_db.Likes],
+  });
   res.json(listOfPosts);
 });
 
-//get all posts associated to specefic user to show it in profile
-router.get("/allposts", validateToken, async (req, res) => {
-  const { username } = req.user;
+//get all posts of specefic user id to show in its profile
+router.get("/user/:id", validateToken, async (req, res) => {
+  const { id } = req.params;
 
   const listOfPosts = await Posts.findAll({
     where: {
@@ -56,7 +58,8 @@ router.post("/", validateToken, async (req, res) => {
   const post = req.body;
   post.username = req.user.username;
 
-  console.log(post.username);
+  console.log(post);
+
   if (post.username != null) {
     await Posts.create(post);
     res.json(post);

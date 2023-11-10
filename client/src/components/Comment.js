@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import AuthContext from "../Hooks/AuthContext";
+import AuthContext from "../Context/AuthContext";
 
 const Comment = ({ data }) => {
   const [authState, setAuthState] = useContext(AuthContext);

@@ -22,7 +22,7 @@ const Search = () => {
       });
   };
   return (
-    <div className="flex items-center  w-1/2 h-2/3  pl-64 ">
+    <div className="flex items-center    ">
       <input
         className="text-center py-2 text-stone-800 border border-1 rounded-lg w-3/4"
         type="text"

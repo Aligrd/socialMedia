@@ -22,12 +22,12 @@ const commentRouter = require("./routes/Commetns");
 const postRouter = require("./routes/Posts");
 const likeRouter = require("./routes/Likes");
 
-app.use("/users", userRouter);
-app.use("/commnets", commentRouter);
-app.use("/posts", postRouter);
-app.use("/likes", likeRouter);
-
 db.sequelize.sync().then(() => {
+  //! use routes after syncing the database (make problem with sequelize)
+  app.use("/users", userRouter);
+  app.use("/commnets", commentRouter);
+  app.use("/posts", postRouter);
+  app.use("/likes", likeRouter);
   app.listen(PORT, () => {
     console.log(`server is running ${PORT}`);
   });

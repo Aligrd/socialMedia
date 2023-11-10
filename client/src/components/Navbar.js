@@ -1,61 +1,33 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
-import AuthContext from "../Hooks/AuthContext";
+import AuthContext from "../Context/AuthContext";
 import NavProfile from "./NavProfile";
+import NavMenu from "./Navbar/NavMenu";
+import NavbarLoginSection from "../components/Navbar/NavbarLoginSection";
+
 const Navbar = () => {
   // const [state, setState] = useState(true);
 
+  const getConnectionStatus = () => {
+    const status =
+      typeof navigator !== "undefined" && typeof navigator.onLine === "boolean"
+        ? navigator.onLine
+        : true;
+    return status;
+  };
   const [authState, SetAuthState] = useContext(AuthContext); //inject authState here
 
-  function logOut() {
-    localStorage.removeItem("accessToken");
-    SetAuthState({
-      username: undefined,
-      id: undefined,
-      authStatus: false,
-    });
-  }
-
   return (
-    <nav className="fixed bg-blue-500 h-16 w-screen text-white flex flex-row items-center justify-between">
+    <nav className="fixed bg-blue-300 ()500 h-16 w-screen  flex flex-row items-center justify-between ">
       <Link to="/">
         <h2 className="text-2xl ml-10">Social Media</h2>
       </Link>
-      <Search />
-      <div className="flex flex-row ">
-        {!authState.authStatus ? (
-          <>
-            <Link to="/login">
-              <h3 className="mr-10 border border-solid border-white px-2 rounded-md hover:bg-slate-600">
-                Login
-              </h3>
-            </Link>
-            <Link to="/signup">
-              <h3 className=" bg-stone-300 text-slate-700 mr-10 border border-solid border-white px-2 rounded-md hover:bg-slate-400">
-                SignUp
-              </h3>
-            </Link>
-          </>
-        ) : (
-          <div className=" w-52 flex justify-between">
-            <Link
-              to="/profile"
-              className="w-12 text-center border bg-stone-500 border-solid border-slate-300 rounded- hover:cursor-pointer"
-            >
-              {authState.username}
-            </Link>
+      {!(window.screen.width < 800) & authState.authState ? <Search /> : <></>}
 
-            <button
-              className="bg-stone-300 text-slate-700 mr-10 border border-solid border-white px-2 rounded-md hover:bg-slate-400  "
-              onClick={logOut}
-            >
-              LogOut
-            </button>
-          </div>
-        )}
-        {/* <NavProfile /> */}
-      </div>
+      {window.screen.width < 800 ? <NavMenu /> : <NavbarLoginSection />}
+
+      {/* <div className="flex flex-row "><NavProfile /></div> */}
     </nav>
   );
 };

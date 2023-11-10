@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage, validateYupSchema } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../Hooks/AuthContext";
+import AuthContext from "../Context/AuthContext";
 const Commnetform = ({ postState }) => {
   const [comment, setComment] = useState("");
   const [postID, setRender] = postState; // set the render state from parrent(post componnet)to true on form submision and rerender the page with new comment

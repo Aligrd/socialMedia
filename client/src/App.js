@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState, useContext } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import axios from "axios";
 
 //Components
 import Home from "./components/Home";
@@ -11,18 +12,17 @@ import SignUp from "./User/Signup";
 import Login from "./User/Login";
 import PageNotFound from "./components/PageNotFound";
 import LandingPage from "./components/LandingPage";
-import ProfilePage from "./components/UserProfile/ProfilePage";
-import PrivateRoute from "./components/util/PrivateRoute";
 import NotAuth from "./User/NotAuth";
 
-import AuthContext from "./Hooks/AuthContext";
-import axios from "axios";
-
+//Contexts
+import AuthContext from "./Context/AuthContext";
+import ThemeContext from "./Context/ThemeContext";
+import Profile from "./components/UserProfile/Profile";
 //! we give logged in user as a state to app component and pass setUser as prop to login page and set in
 
 function App() {
   const [user, setUser] = useState({}); //* this is user data witch can be accessed trough navbar icon in  this is just username and user avatar
-
+  const [theme, setTheme] = useState(true);
   const [authState, setAuthState] = useState({
     username: undefined,
     id: undefined,
@@ -77,42 +77,37 @@ function App() {
       });
   }, []);
 
-  console.log("App :", authState);
+  console.log("authState from App:", authState);
 
   return (
-    <AuthContext.Provider value={[authState, setAuthState]}>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" exact Component={LandingPage} />
-          <Route path="/home" exact Component={Home} />
-          <Route path="/signup" exact Component={SignUp} />
-          <Route path="/login" exact Component={Login} />
-          <Route
-            path="profile"
-            element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
-            }
-          />
-          {/* change the routing comonenet if user is logout you unauth users
+    <ThemeContext.Provider value={[theme, setTheme]}>
+      <AuthContext.Provider value={[authState, setAuthState]}>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" exact Component={LandingPage} />
+            <Route path="/home" exact Component={Home} />
+            <Route path="/signup" exact Component={SignUp} />
+            <Route path="/login" exact Component={Login} />
+            <Route path="profile/:id" Component={Profile} />
+            {/* change the routing comonenet if user is logout you unauth users
           wanted to reach a route specefic for logged in users */}
-          {authState.authStatus ? (
-            <>
-              <Route path="/create" exact Component={CreatePost} />
-              <Route path="/post/:id" exact Component={Post} />
-            </>
-          ) : (
-            <>
-              <Route path="/create" exact Component={NotAuth} />
-              <Route path="/post" exact Component={NotAuth} />
-            </>
-          )}
-          <Route path="*" exact Component={PageNotFound} />
-        </Routes>
-      </Router>
-    </AuthContext.Provider>
+            {authState.authStatus ? (
+              <>
+                <Route path="/create" exact Component={CreatePost} />
+                <Route path="/post/:id" exact Component={Post} />
+              </>
+            ) : (
+              <>
+                <Route path="/create" exact Component={NotAuth} />
+                <Route path="/post" exact Component={NotAuth} />
+              </>
+            )}
+            <Route path="*" exact Component={PageNotFound} />
+          </Routes>
+        </Router>
+      </AuthContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
