@@ -28,7 +28,7 @@ const NavbarLoginSection = () => {
             className="p-3 bg-blue-400 border border-1 rounded-md"
             to="/login"
           >
-            <h3 className="">درود</h3>
+            <h3 className="">ورود</h3>
           </Link>
           <Link
             className="p-3 bg-blue-400 border border-1 rounded-md"

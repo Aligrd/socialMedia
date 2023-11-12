@@ -72,15 +72,15 @@ router.post("/", validateToken, async (req, res) => {
 //! we want to edit a post tile and postText
 router.post("/edit/:postId", validateToken, async (req, res) => {
   const { postId } = req.params;
-  const { title, postText } = req.body;
+  const { newTitle, newPostText } = req.body;
 
   if (isNaN(postId)) {
     res.json({ error: "parameters is not a number" });
   } else {
     const edit = await _db.Posts.update(
       {
-        title: title,
-        postText: postText,
+        title: newTitle,
+        postText: newPostText,
       },
       {
         where: {

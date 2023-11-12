@@ -5,6 +5,7 @@ const { Op } = require("sequelize");
 const router = express.Router();
 const randomStringGenerator = require("randomstring");
 const { Users } = require("../models"); //user model
+const _db = require("../models/index");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 router.get("/", async (req, res) => {
   const usersList = await Users.findAll();
@@ -101,6 +102,34 @@ router.post("/login", async (req, res) => {
 //! validate user accessToken to ensure the authentication
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);
+});
+//! update password
+router.post("/update/password", validateToken, async (req, res) => {
+  const { passowrd, newPassword } = req.body;
+  console.log(req.body);
+
+  // res.json(req.body);
+  const { id } = req.user;
+
+  const user = await _db.Users.findByPk(id);
+
+  const isMatch = await bcrypt.compare(passowrd, user.password);
+
+  if (isMatch) {
+    const newHash = await bcrypt.hash(newPassword, 10);
+
+    await _db.Users.update(
+      { password: newHash },
+      {
+        where: {
+          id: id,
+        },
+      }
+    );
+    res.json({ success: true });
+  } else {
+    res.json({ error: "wrong password!" });
+  }
 });
 
 module.exports = {

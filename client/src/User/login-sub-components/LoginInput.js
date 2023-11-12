@@ -4,6 +4,10 @@ const LoginInput = ({ loginState, type }) => {
   const [loginData, setLoginData] = loginState;
 
   const handleOnChange = (env) => {
+    const inputValue = env.target.value;
+    if (inputValue.trim() !== inputValue) {
+      env.target.value = inputValue.trim();
+    }
     if (type === "username") {
       setLoginData({
         ...loginData,
