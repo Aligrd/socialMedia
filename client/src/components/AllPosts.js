@@ -22,8 +22,8 @@ function Post({ props }) {
   };
   //TODO make like to be a react c component
   const className = `${
-    theme ? "bg-stone-300 text-black" : "bg-stone-900 text-white"
-  } w-full  h-1/3  flex flex-col items-center justify-between rounded-md cursor-pointer md:w-1/3 md:h-1/3`;
+    theme ? "bg-stone-300 text-black" : "bg-stone-900 text-white "
+  } w-full mt-20 h-1/4  flex flex-col items-center justify-between rounded-md cursor-pointer md:w-1/3 md:h-1/3`;
 
   return (
     <div

@@ -31,7 +31,6 @@ function Post() {
   let today = "امروز روز زیباییست";
 
   // today = `!${today}`;
-  
 
   const [render, setRender] = useState(false); // for rerendring of component in case new comment added in commentform Component
 

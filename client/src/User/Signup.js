@@ -5,6 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 
+import SignupFormValidation from "./login-sub-components/SignupFormValidation";
 import EvaluatePassword from "../components/util/EvaluatePassword";
 const Signup = () => {
   const [registerInfo, setRegisterInfo] = useState({
@@ -21,6 +22,8 @@ const Signup = () => {
 
   //TODO we dont evaluate user entry
   // const ThemeContext = useContext(AppContext); //context for Theme (future)
+
+  //! implement a progressio bar like this https://i.stack.imgur.com/L4pfu.png for password evaluation
   const navigate = useNavigate();
   const handleRegistration = () => {
     axios
@@ -109,12 +112,7 @@ const Signup = () => {
           </form>
         </div>
       </div>
-      <div className="bg-red-200 p-10 ">
-        <h1>numb : {JSON.stringify(passwordState.doesHaveNumber)}</h1>
-        <h1>char : {JSON.stringify(passwordState.doesHaveSpecialCharacter)}</h1>
-        <h1>upper : {JSON.stringify(passwordState.doesHaveUpperCase)}</h1>
-        <h1>upper : {JSON.stringify(passwordState.doesHaveEnoughLength)}</h1>
-      </div>
+      <SignupFormValidation passwordState={passwordState} />
     </div>
   );
 };

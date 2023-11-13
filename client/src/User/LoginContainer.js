@@ -12,9 +12,8 @@ const LoginContainer = ({
   return (
     // md:[ absolute right-[-15%] top-[25%] h-[54%] w-[calc(30%)] flex flex-col  justify-center items-center bg-blue-300 rounded-xl ]
     <div
-      className=" w-full h-1/2 flex flex-col md:relative md:right-[50%] md:bg-blue-100 md:border md:border-1 md:border-black md:p-12  md:w-full  md:rounded-lg 
-    md:bg-gradient-to-tr md:from-cyan-500 md:to-blue-100
-    "
+      className=" w-full h-1/2 flex flex-col md:min-w-[300px] md:relative md:right-[50%] md:bg-blue-100 md:border md:border-1 md:border-black md:p-12  md:w-full  md:rounded-lg 
+    md:bg-gradient-to-tr md:from-cyan-500 md:to-blue-100"
     >
       <ErrorModal errState={errState} errMessage={errMessage} />
       <h2 className="text-4xl relative top-[-1em] self-center  md:relative md:top-4">

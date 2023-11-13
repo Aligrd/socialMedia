@@ -4,6 +4,10 @@ import axios from "axios";
 import AllPosts from "./AllPosts";
 import Login from "../User/Login";
 import AuthContext from "../Context/AuthContext";
+
+//home sub components
+import Navigation from "./Home/Navigation";
+
 import { FaArrowAltCircleRight } from "react-icons/fa";
 function Home() {
   const [userAuth] = useContext(AuthContext);
@@ -29,18 +33,18 @@ function Home() {
   }, [userAuth]);
 
   return (
-    <div className="App w-screen h-screen flex flex-col items-center">
-      {/* userAuthContext.authStatus */}
-      {isUserLogged && (
-        <Link className="mt-20" to="/create">
-          <button className="bg-stone-800 text-orange-200 p-4 rounded-lg hover:scale-105">
-            Create A Post
-          </button>
-        </Link>
-      )}
-      {data.map((record, key) => (
-        <AllPosts key={key} props={record} />
-      ))}
+    <div className="w-screen h-screen flex justify-between box-border">
+      <aside className="w-2/5 h-screen"></aside>
+
+      <aside className="h-screen w-1/2 flex flex-col items-center border-x-4">
+        {data.map((record, key) => (
+          <AllPosts key={key} props={record} />
+        ))}
+      </aside>
+
+      <aside className="w-1/5 h-screen">
+        <Navigation />
+      </aside>
     </div>
   );
 }

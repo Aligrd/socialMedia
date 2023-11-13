@@ -1,5 +1,18 @@
+@font-face {
+  font-family: IRANYekan;
+  src: url(../public/Assets//Fonts/Yekan.woff);
+}
+
+:root {
+  --font-yekan: IRANYekan;
+  --font-vazir: Vazirmatn;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  /* font-family:  var(--font-vazir), sans-serif; */
+  font-family: var(--font-yekan), sans-serif;
 }
