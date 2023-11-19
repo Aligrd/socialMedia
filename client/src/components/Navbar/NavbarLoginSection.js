@@ -17,9 +17,8 @@ const NavbarLoginSection = () => {
       id: undefined,
       authStatus: false,
     });
-    navigate("/");
+    navigate("/login");
   };
-
   return (
     <>
       {!authState.authStatus ? (
@@ -39,16 +38,12 @@ const NavbarLoginSection = () => {
         </div>
       ) : (
         <div className="flex ">
-          <div
+          <Link
             className="bg-green-200 border border-1 border-red-900 rounded-md p-3 mr-2 hover:bg-green-100"
-            onClick={() => {
-              navigate(`/profile/${authState.id}`);
-            }}
+            to={`/profile/${authState.id}`}
           >
-            <Link to="/profile" className=" ">
-              {authState.username}
-            </Link>
-          </div>
+            {authState.username}
+          </Link>
           <button
             className="bg-green-200 border border-1 border-red-900 rounded-md p-3 mr-2 hover:scale-105"
             onClick={logOut}

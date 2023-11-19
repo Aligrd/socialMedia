@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext";
-import SQLDateParser from "../util/SQLDateParser";
+
 import Notification from "../util/Notification";
+import ChangePassword from "./ChangePassword";
+import ProfilePostTemplate from "./ProfilePostTemplate";
+import UserInfo from "./UserInfo";
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
@@ -79,94 +82,36 @@ const Profile = () => {
     <div className="h-screen w-screen flex flex-col  justify-center items-center text-black ">
       {doesDatabaseHaveUser ? (
         <>
-          {currentUser.id & !changePassResult && (
-            <>
-              <Notification
-                {...{ color: "red", message: "کلمه عبور اشتباه می باشد" }}
-              />
-            </>
+          {currentUser.authStatus & changePassResult ? (
+            <Notification
+              {...{ color: "red", message: "کلمه عبور اشتباه می باشد" }}
+            />
+          ) : (
+            <></>
           )}
-          {currentUser.id === Number(id) && (
+          {/* {currentUser.id === Number(id) && (
             <button
               className="bg-red-300 text-black p-3 rounded-lg cursor-pointer mb-1 border border-1 border-red-300   hover:text-red-600 hover:bg-white hover:border hover:border-1 hover:border-red-300 "
               onClick={() => setShowPassowrdUpdate(!showPassowrdUpdate)}
             >
               تغییر پسورد
             </button>
-          )}
-          {showPassowrdUpdate && (
-            <form
-              className="absolute top-32 right-20 bg-blue-300 p-3 flex flex-col justify-center items-center gap-3"
-              onSubmit={changePassword}
-            >
-              <div className="flex flex-row-reverse">
-                <label htmlFor="">کلمه عبور فعلی</label>
-                <input
-                  type="text"
-                  onChange={(e) =>
-                    setPasswordData({
-                      ...passwordData,
-                      currentPassword: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className="flex flex-row-reverse">
-                <label htmlFor="">کلمه عبور جدید</label>
-                <input
-                  type="text"
-                  onChange={(e) =>
-                    setPasswordData({
-                      ...passwordData,
-                      newPassword: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className="flex flex-row-reverse">
-                <label htmlFor="">کلمه عبور جدید</label>
-                <input
-                  type="text"
-                  onChange={(e) =>
-                    setPasswordData({
-                      ...passwordData,
-                      repeatNewPassword: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <button className="bg-teal-300 text-black p-3 rounded-lg cursor-pointer mb-1 border border-1 border-teal-300   hover:text-teal-600 hover:bg-white hover:border hover:border-1 hover:border-teal-300">
-                تغییر کلمه عبور
-              </button>
-            </form>
-          )}
-          User Info :
-          <div className="border border-1 border-green-400 p-10 mb-10 ">
-            <h1>username = {userData.username}</h1>
-            <h1>id = {userData.id}</h1>
-            <h1>email = {userData.email}</h1>
-            <h1>
-              born = {SQLDateParser(userData.createdAt).date}
-              {SQLDateParser(userData.createdAt).time}
-            </h1>
-          </div>
-          User Posts :
-          <div className="border border-1 border-red-400 p-10">
+          )} */}
+          <ChangePassword
+            {...{
+              showPassowrdUpdate,
+              passwordData,
+              setPasswordData,
+              changePassword,
+            }}
+          />
+          <UserInfo {...userData} />
+          <h1>پست ها</h1>
+          <div className="w-screen flex  justify-center items-center">
             {userPosts.length === 0
-              ? "User dont have any Post"
+              ? "این کاربر پستی ندارد"
               : userPosts.map((post, indx) => (
-                  <div
-                    className="border border-1 border-black my-4 p-2"
-                    key={indx}
-                  >
-                    POST {indx + 1} :<h1>title = {post.title}</h1>
-                    <h1>cone = {post.postText}</h1>
-                    <h1>
-                      postedAt = {SQLDateParser(post.createdAt).date}
-                      {SQLDateParser(post.createdAt).time}
-                    </h1>
-                    <h1>number of likes = {post.Likes.length}</h1>
-                  </div>
+                  <ProfilePostTemplate {...{ post, indx }} />
                 ))}
           </div>
         </>

@@ -34,9 +34,6 @@ function Login() {
     }
   });
   useEffect(() => {
-    document.addEventListener("keypress", (e) => {
-      if (e.key == "Enter") submitLogin();
-    }); //TODO how to check the key to submit the form
     if (location.state) {
       setCredentials({
         username: location.state.username,
@@ -48,6 +45,19 @@ function Login() {
     if (authState.authStatus) {
       navigate("/home");
     }
+  }, []);
+
+  useEffect(() => {
+    const loginByEnter = (env) => {
+      if (env.key === "Enter") {
+        submitLogin();
+      }
+    };
+    document.addEventListener("keydown", loginByEnter);
+
+    return () => {
+      document.removeEventListener("keydown", loginByEnter);
+    };
   }, []);
 
   //navigate to home with user data
@@ -97,7 +107,6 @@ function Login() {
       </div>
       <div>
         <LoginContainer
-        
           credentialState={[credential, setCredentials]}
           handleSubmit={submitLogin}
           errState={isLogginErr}

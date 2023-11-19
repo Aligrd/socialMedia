@@ -36,35 +36,33 @@ const Like = (likeProps) => {
       });
   };
   return (
-    <button>
-      <div className="flex justify-center items-center">
-        <div className="cursor-pointer hover:scale-110">
-          {!isLiked ? (
-            <FaRegHeart
-              onClick={() => {
-                if (userAuthContext.authStatus) {
-                  setIsLiked(true);
-                  setLikes((prev) => prev + 1);
-                  submitLike();
-                } else alert("most be logged in to like a post!"); //TODO make a overlay alert box to show
-              }}
-            />
-          ) : (
-            <FaHeart
-              className="cursor-pointer"
-              onClick={() => {
-                if (userAuthContext.authStatus) {
-                  setIsLiked(false);
-                  setLikes((prev) => prev - 1);
-                  submitLike();
-                } else alert("most be logged in to like a post!"); //TODO make a overlay alert box to show
-              }}
-            />
-          )}
-        </div>
-        <h4>{like}</h4>
+    <div className="flex justify-center items-center text-2xl mr-4">
+      <div className="cursor-pointer hover:scale-110">
+        {!isLiked ? (
+          <FaRegHeart
+            onClick={() => {
+              if (userAuthContext.authStatus) {
+                setIsLiked(true);
+                setLikes((prev) => prev + 1);
+                submitLike();
+              } else alert("most be logged in to like a post!"); //TODO make a overlay alert box to show
+            }}
+          />
+        ) : (
+          <FaHeart
+            className="cursor-pointer"
+            onClick={() => {
+              if (userAuthContext.authStatus) {
+                setIsLiked(false);
+                setLikes((prev) => prev - 1);
+                submitLike();
+              } else alert("most be logged in to like a post!"); //TODO make a overlay alert box to show
+            }}
+          />
+        )}
       </div>
-    </button>
+      <h4 className="ml-2">{like}</h4>
+    </div>
   );
 };
 

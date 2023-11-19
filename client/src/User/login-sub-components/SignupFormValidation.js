@@ -40,14 +40,16 @@ const SignupFormValidation = ({ passwordState }) => {
         )}
         <h1>پسورد باید از حداقل یک حرف عدد تشکیل شده باشد</h1>
       </div>
+
       <div className="flex justify-center items-center">
         {passwordState.doesHaveUpperCase ? (
           <FaCheckSquare className="text-green-600" />
         ) : (
           <FaTimes className="text-red-600" />
         )}
-        <h1>پسورد باید از حداقل یک حرف عدد تشکیل شده باشد</h1>
+        <h1>پسورد باید از حداقل یک حرف بزرگ تشکیل شده باشد</h1>
       </div>
+
       <div className="flex justify-center items-center">
         {passwordState.doesHaveEnoughLength ? (
           <FaCheckSquare className="text-green-600" />

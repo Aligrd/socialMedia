@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: IRANYekan;
   src: url(../public/Assets//Fonts/Yekan.woff);
@@ -5,7 +6,6 @@
 
 :root {
   --font-yekan: IRANYekan;
-  --font-vazir: Vazirmatn;
 }
 * {
   margin: 0;

@@ -18,11 +18,13 @@ function CreatePost() {
   });
 
   const submition = (data) => {
+    console.log(data);
     axios
       .post("http://localhost:3001/posts", data, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((res) => {
+        console.log(res.data);
         !res.data.error ? navigate("/") : console.log("post didnt submitted");
       });
   };
@@ -39,11 +41,9 @@ function CreatePost() {
           <label htmlFor="">Title: </label>
           <ErrorMessage name="title" component="span" />
           <Field id="" name="title" placeholder="title" />
-
           <label htmlFor="">Post: </label>
           <ErrorMessage name="postText" component="span" />
           <Field id="" name="postText" placeholder="postText" />
-
           <button
             className="bg-slate-400 px-4 py-2 m-4 rounded-lg hover:scale-105 "
             type="submit"

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.signup-empty {
+  @apply md:bg-red-400 md:outline md:outline-red-200;
+}

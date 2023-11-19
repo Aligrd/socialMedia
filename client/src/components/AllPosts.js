@@ -21,13 +21,10 @@ function Post({ props }) {
     navigate(`/post/${Postid}`);
   };
   //TODO make like to be a react c component
-  const className = `${
-    theme ? "bg-stone-300 text-black" : "bg-stone-900 text-white "
-  } w-full mt-20 h-1/4  flex flex-col items-center justify-between rounded-md cursor-pointer md:w-1/3 md:h-1/3`;
 
   return (
     <div
-      className={className}
+      className=" bg-blue-200 w-full h-40 m-[1px] border-t-[1px] border-black flex flex-col items-center justify-between  md:cursor-pointer "
       ref={postBody}
       onClick={(e) => {
         if (e.target === postBody.current) {
@@ -36,38 +33,28 @@ function Post({ props }) {
         }
         //! dont let navigation happen if you click in other part of post (like)
       }}
-      // onMouseOver={(e) => {
-      //   setShowDetail(true);
-      // }}
-      // onMouseOut={() => {
-      //   setShowDetail(false);
-      // }}
     >
-      <h2 className="bg-stone-400 w-full text-center text-md text-white rounded-t-md ">
+      <h2 className="text-stone-600 w-full text-center rounded-t-md ">
         {props.title}
       </h2>
 
-      <p className="text-lg w-24">{props.postText}</p>
+      <p className="text-lg w-full text-center">{props.postText}</p>
 
-      <div className="bg-emerald-800 flex justify-between  items-center w-full text-white rounded-b-md box-border">
-        <div className="bg-red-300 border border-1 border-stone-300 text-black p-1">
-          <Link to={`/profile/${props.UserId}`}>{props.username}</Link>
+      <div className=" flex justify-between  items-center w-full box-border ">
+        <div className="flex justify-center items-center">
+          <img src="" alt="" width={40} height={20} />
+          <Link
+            className=" text-lg text-stone-800 text-black p-1"
+            to={`/profile/${props.UserId}`}
+          >
+            {props.username}
+          </Link>
         </div>
-        {/* WE WANT USERNAME BE A COMPONENT WITCH WE CONTAIN USER PROFILE IMAGE INIT */}
+
         {userAuthContext.authStatus && (
           <Like {...{ PostId: Postid, userAuthContext: userAuthContext }} />
         )}
       </div>
-      {/* {showDetail ? (
-        <div
-          onClick={() => {
-            setIsLiked(true);
-          }}
-          className="bg-stone-500  text-emerald-300 text-sm rounded-md absolute top-2 right-2 hover:bg-stone-400"
-        ></div>
-      ) : (
-        <div></div>
-      )} */}
     </div>
   );
 }

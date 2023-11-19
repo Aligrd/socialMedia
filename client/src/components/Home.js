@@ -4,6 +4,7 @@ import axios from "axios";
 import AllPosts from "./AllPosts";
 import Login from "../User/Login";
 import AuthContext from "../Context/AuthContext";
+import { FaPlus } from "react-icons/fa";
 
 //home sub components
 import Navigation from "./Home/Navigation";
@@ -33,16 +34,21 @@ function Home() {
   }, [userAuth]);
 
   return (
-    <div className="w-screen h-screen flex justify-between box-border">
-      <aside className="w-2/5 h-screen"></aside>
+    <div className="w-screen h-[clac(100vh-64px)] flex box-border">
+      <aside className="w-full h-full bg-blue-100 hidden md:w-2/5 md:h-screen md:block md:place-items-end"></aside>
 
-      <aside className="h-screen w-1/2 flex flex-col items-center border-x-4">
+      <aside className="h-full w-full flex flex-col items-center border-x-4 ">
         {data.map((record, key) => (
           <AllPosts key={key} props={record} />
         ))}
       </aside>
-
-      <aside className="w-1/5 h-screen">
+      <Link
+        to="/create"
+        className="fixed bottom-8 left-8 w-14 h-14 bg-stone-400 rounded-full flex items-center justify-center md:hidden"
+      >
+        <FaPlus className="text-4xl" />
+      </Link>
+      <aside className=" bg-blue-100 hidden w-1/5  md:block">
         <Navigation />
       </aside>
     </div>

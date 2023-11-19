@@ -11,41 +11,48 @@ import {
 } from "react-icons/fa";
 const Navigation = () => {
   const [user, setUser] = useContext(AuthContext);
+
   return (
-    <div className="h-full  flex flex-col items-center justify-center center text-3xl">
-      <div className=" h-1/3 flex flex-col w-2/3 items-end justify-between mr-20">
-        <Link to="/" className="flex justify-center items-center gap-x-3">
+    <div className=" fixed right-0 h-full flex flex-col items-center justify-center center text-3xl box-border">
+      <div className=" h-1/2 flex flex-col w-20 items-end justify-around mr-4">
+        <Link
+          to="/"
+          className="flex justify-center items-center gap-x-3 hover:opacity-70"
+        >
           <h1>خانه</h1>
           <FaHome />
         </Link>
-        <Link className="flex justify-center items-center gap-x-3">
+        <Link className="flex justify-center items-center gap-x-3 hover:opacity-70">
           <h1>اکتشاف</h1>
           <FaHashtag />
         </Link>
 
-        <Link className="flex justify-center items-center gap-x-3">
+        <Link className="flex justify-center items-center gap-x-3 hover:opacity-70">
           <h1>اعلانات</h1>
           <FaBell />
         </Link>
-
-        <Link className="flex justify-center items-center gap-x-3">
-          <h1>پیام ها</h1>
+        <Link className="flex justify-center items-center gap-x-3 hover:opacity-70">
+          <h1>ها</h1>
+          <h1>پیام</h1>
           <FaCommentDots />
         </Link>
 
-        <Link className="flex justify-center items-center gap-x-3">
+        <Link
+          to={`/profile/${user.id}`}
+          className="flex justify-center items-center gap-x-3 hover:opacity-70"
+        >
           <h1>پروفایل</h1>
           <img className="flex rounded-full w-9 h-9 bg-red-200" src="" alt="" />
         </Link>
       </div>
 
       {user.authStatus && (
-        <Link className="mt-20" to="/create">
-          <button className="w-full h-full flex rounded-lg hover:scale-105 justify-center items-center">
-            <FaPlus />
-            <h1 className="leading-3">پست</h1>
-          </button>
-        </Link>
+        <div className="absolute bottom-32 right-10 flex justify-center items-start  hover:text-stone-600 cursor-pointer">
+          <Link className="" to="/create">
+            <h1 className="">پست</h1>
+          </Link>
+          <FaPlus className="relative top-1 ml-1" />
+        </div>
       )}
     </div>
   );
