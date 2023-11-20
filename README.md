@@ -18,9 +18,11 @@
     react-router-dom for client side routing and navigation     
 </h4>
     <h4> 
-    tailwindcss    
+    axios 
 </h4>
-
+    <h4> 
+    tailwindcss
+</h4>
 </div>
 
 
@@ -38,10 +40,8 @@
         
 </h4>
     <h4> 
-    JWT token for authenthication
-    
-</h4>
-
+        jwt for token based authentication
+    </h4>
 </div>
 
 
