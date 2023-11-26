@@ -23,6 +23,7 @@ const NavbarLoginSection = () => {
     <>
       {!authState.authStatus ? (
         <div className="flex flex-row justify-between">
+          <button className="">ThemeChange</button>
           <Link
             className="p-3 bg-blue-400 border border-1 rounded-md"
             to="/login"

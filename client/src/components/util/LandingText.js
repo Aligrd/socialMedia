@@ -27,7 +27,7 @@ function LandingText({ str }) {
     return () => clearInterval(interval);
   }, [index]);
 
-  return <div className="text-6xl">{substr}</div>;
+  return <div className="text-6xl h-24 text-center">{substr}</div>;
 }
 
 export default LandingText;

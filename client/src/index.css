@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.signup-empty {
-  @apply md:bg-red-400 md:outline md:outline-red-200;
+@layer base {
+  * {
+    --dark: #252627;
+    --dark2: #202124;
+    /* --light:  */
+    --light_: rgb(255, 255, 255);
+    --light__: rgb(204, 204, 204);
+    ---trans-white: hsl(0 0% 100% / 0.1);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .signup-empty {
+    @apply md:bg-red-400 md:outline md:outline-red-200;
+  }
 }

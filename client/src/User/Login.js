@@ -101,7 +101,7 @@ function Login() {
   };
 
   return (
-    <div className="bg-stone-200 h-screen w-screen flex justify-center items-center ">
+    <div className="bg-stone-200 h-full w-full flex justify-center items-center ">
       <div className="bg-[#a4bade] w-[70vw] h-4/5 mt-12 min-w-[800px] hidden items-center justify-center rounded-lg md:flex">
         <AutoCompleteText str={"خوش آمدید"} />
       </div>

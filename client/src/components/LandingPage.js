@@ -19,7 +19,7 @@ const LandingPage = () => {
   }, [userAuth]);
 
   return (
-    <div className="text-center flex justify-center items-center h-screen">
+    <div className="h-full text-center flex justify-center items-center ">
       <LandingText str={text} />
     </div>
   );

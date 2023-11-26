@@ -76,7 +76,7 @@ const Signup = () => {
 
   console.log(passwordState);
   return (
-    <div className="bg-gradient-to-tr from-slate-500 to-blue-200 h-screen w-screen flex justify-center items-center">
+    <div className="relative w-full h-full  flex justify-center items-center bg-gradient-to-tr from-slate-500 to-blue-200">
       <form
         onSubmit={handleRegistration}
         className="w-full  text-xl flex flex-col gap-y-6  md:border md:max-w-[20rem] md:flex md:bg-gradient-to-bl md:from-bg-blue-200 "
@@ -142,8 +142,9 @@ const Signup = () => {
           ثبت نام
         </button>
       </form>
-
-      {/* <SignupFormValidation passwordState={passwordState} /> */}
+      <div className="">
+        <SignupFormValidation passwordState={passwordState} />
+      </div>
     </div>
   );
 };

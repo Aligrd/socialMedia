@@ -21,7 +21,7 @@ const SignupFormValidation = ({ passwordState }) => {
   };
 
   return (
-    <div className="bg-red-300 p-5">
+    <div className="absolute top-10 right-10 bg-gradient-to-bl from-slate-400 to-blue-300 p-5 hidden border-[1px] border-blue-400 rounded-md shadow-xl md:block">
       <Progressionbar currProgression={3} />
       <div className="flex justify-center items-center">
         {passwordState.doesHaveSpecialCharacter ? (

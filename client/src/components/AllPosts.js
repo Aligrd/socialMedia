@@ -2,6 +2,7 @@ import { Link, useFetcher, useNavigate, useParams } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../Context/AuthContext";
 import ThemeContext from "../Context/ThemeContext";
+
 import Like from "./Like";
 
 function Post({ props }) {
@@ -13,18 +14,23 @@ function Post({ props }) {
   let postBody = useRef(null);
 
   const [userAuthContext, setUserAuthContext] = useContext(AuthContext);
-  const [theme, setTheme] = useContext(ThemeContext);
+  const [themeMode, setThemeMode] = useContext(ThemeContext);
 
   const Postid = props.id;
 
   const handleNavigation = () => {
     navigate(`/post/${Postid}`);
   };
-  //TODO make like to be a react c component
+
+  //TODO make like to be a react ccomponent
+
+  const style = `${
+    themeMode ? "bg-red-400" : "bg-[#080B13]"
+  } w-full  min-h-[200px] border-t-[1px] border-black flex flex-col items-center justify-between  md:cursor-pointer`;
 
   return (
     <div
-      className=" bg-blue-200 w-full h-40 m-[1px] border-t-[1px] border-black flex flex-col items-center justify-between  md:cursor-pointer "
+      className={style}
       ref={postBody}
       onClick={(e) => {
         if (e.target === postBody.current) {
@@ -44,7 +50,7 @@ function Post({ props }) {
         <div className="flex justify-center items-center">
           <img src="" alt="" width={40} height={20} />
           <Link
-            className=" text-lg text-stone-800 text-black p-1"
+            className=" text-lg text-stone-800 p-1"
             to={`/profile/${props.UserId}`}
           >
             {props.username}

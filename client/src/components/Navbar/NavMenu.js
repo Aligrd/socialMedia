@@ -15,7 +15,6 @@ const NavMenu = () => {
         )}
         {isClicked && (
           <DropDownMenu clickState={[isClicked, setIsClicked]} />
-
           // <div className="bg-stone-300 w-28 text-black absolute  flex flex-col justify-center items-center border border-1 rounded-lg py-2 ">
           //   <Link to="/login">
           //     <span className="flex text-xl focus:bg-red-300">ورود</span>

@@ -20,7 +20,7 @@ const Navbar = () => {
   // };
 
   return (
-    <nav className="fixed bg-blue-300 h-16 w-screen  flex flex-row items-center justify-between ">
+    <nav className="sticky w-screen flex flex-row items-center justify-between bg-blue-300  h-16">
       <Link to="/">
         <h2 className="text-2xl ml-10">Social Media</h2>
       </Link>

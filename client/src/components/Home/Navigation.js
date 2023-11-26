@@ -13,7 +13,7 @@ const Navigation = () => {
   const [user, setUser] = useContext(AuthContext);
 
   return (
-    <div className=" fixed right-0 h-full flex flex-col items-center justify-center center text-3xl box-border">
+    <div className="fixed top-0 right-0 h-full flex flex-col items-center justify-center center text-3xl box-border">
       <div className=" h-1/2 flex flex-col w-20 items-end justify-around mr-4">
         <Link
           to="/"
