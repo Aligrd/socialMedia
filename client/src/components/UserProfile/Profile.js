@@ -7,6 +7,7 @@ import Notification from "../util/Notification";
 import ChangePassword from "./ChangePassword";
 import ProfilePostTemplate from "./ProfilePostTemplate";
 import UserInfo from "./UserInfo";
+import ProfilePostSection from "./ProfilePostSection";
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
@@ -79,16 +80,16 @@ const Profile = () => {
   console.log("useriD", currentUser);
 
   return (
-    <div className="h-screen w-screen flex flex-col  justify-center items-center text-black ">
+    <div className="w-screen max-h-screen flex flex-col justify-center items-center text-black md:flex md:flex-row ">
       {doesDatabaseHaveUser ? (
         <>
-          {currentUser.authStatus & changePassResult ? (
+          {/* {currentUser.authStatus & changePassResult ? (
             <Notification
               {...{ color: "red", message: "کلمه عبور اشتباه می باشد" }}
             />
           ) : (
             <></>
-          )}
+          )} */}
           {/* {currentUser.id === Number(id) && (
             <button
               className="bg-red-300 text-black p-3 rounded-lg cursor-pointer mb-1 border border-1 border-red-300   hover:text-red-600 hover:bg-white hover:border hover:border-1 hover:border-red-300 "
@@ -97,22 +98,17 @@ const Profile = () => {
               تغییر پسورد
             </button>
           )} */}
-          <ChangePassword
-            {...{
-              showPassowrdUpdate,
-              passwordData,
-              setPasswordData,
-              changePassword,
-            }}
-          />
-          <UserInfo {...userData} />
-          <h1>پست ها</h1>
-          <div className="w-screen flex  justify-center items-center">
-            {userPosts.length === 0
-              ? "این کاربر پستی ندارد"
-              : userPosts.map((post, indx) => (
-                  <ProfilePostTemplate {...{ post, indx }} />
-                ))}
+          <div className="">
+            <ChangePassword
+              {...{
+                showPassowrdUpdate,
+                passwordData,
+                setPasswordData,
+                changePassword,
+              }}
+            />
+            <UserInfo {...userData} />
+            <ProfilePostSection userPosts={userPosts} />
           </div>
         </>
       ) : (

@@ -20,7 +20,12 @@ import Profile from "./components/UserProfile/Profile";
 import Shit from "./Shit";
 
 function App() {
-  const [user, setUser] = useState({}); //* this is user data witch can be accessed trough navbar icon in  this is just username and user avatar
+  //! configuration for axios
+  axios.defaults.headers.common["Authorization"] =
+    localStorage.getItem("accessToken");
+
+  //! states
+  // const [user, setUser] = useState({});
   const [theme, setTheme] = useState(true);
   const [authState, setAuthState] = useState({
     username: undefined,
@@ -58,13 +63,17 @@ function App() {
       });
   }, []);
 
+  const bg = theme ? "bg-[var(--light-3)]" : "bg-[var(--dark-3)]";
+
   return (
     <ThemeContext.Provider value={[theme, setTheme]}>
       <AuthContext.Provider value={[authState, setAuthState]}>
         <Router>
-          <div className="bg-blue-100">
+          <div
+            className={`${bg} w-screen h-[100vh] flex flex-col items-center`}
+          >
             <Navbar />
-            <div className="h-[calc(100vh-4rem)] w-max-screen">
+            <div className="w-full h-[100vh] overflow-x-hidden">
               <Routes>
                 <Route path="/" exact Component={LandingPage} />
                 <Route path="/home" exact Component={Home} />

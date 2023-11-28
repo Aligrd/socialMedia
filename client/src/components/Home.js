@@ -10,6 +10,7 @@ import NewsSide from "./Home/NewsSide";
 import NavigationSide from "./Home/NavigationSide";
 import ContentSection from "./Home/ContentSection";
 
+import { ThemeHelper } from "../Context/ThemeChnageHelper"; //! theme helper
 function Home() {
   const [userAuth] = useContext(AuthContext);
   const [data, setData] = useState([]);
@@ -24,6 +25,7 @@ function Home() {
       setData(res.data);
     });
   }, []);
+  
 
   useEffect(() => {
     setIsUserLogged(userAuth.authStatus);
@@ -33,22 +35,24 @@ function Home() {
   }, [userAuth]);
 
   return (
-    <div className=" w-scren  h-max flex box-border">
-      <NewsSide />
+    <div className="w-full h-full flex justify-center items-center">
+      <div className="w-[70%]  h-full flex box-border">
+        <NewsSide />
 
-      <ContentSection postData={data} />
-      {/* <aside className="h-full w-full flex flex-col items-center border-x-4 ">
+        <ContentSection postData={data} />
+        {/* <aside className="h-full w-full flex flex-col items-center border-x-4 ">
         {data.map((record, key) => (
           <AllPosts key={key} props={record} />
         ))}
       </aside> */}
-      <Link
-        to="/create"
-        className="fixed bottom-8 left-8 w-14 h-14 bg-stone-400 rounded-full flex items-center justify-center md:hidden"
-      >
-        <FaPlus className="text-4xl" />
-      </Link>
-      <NavigationSide />
+        <Link
+          to="/create"
+          className="fixed bottom-8 left-8 w-14 h-14 bg-stone-400 rounded-full flex items-center justify-center md:hidden"
+        >
+          <FaPlus className="text-4xl" />
+        </Link>
+        <NavigationSide />
+      </div>
     </div>
   );
 }

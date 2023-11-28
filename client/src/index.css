@@ -4,15 +4,46 @@
 
 @layer base {
   * {
-    --dark: #252627;
-    --dark2: #202124;
-    /* --light:  */
-    --light_: rgb(255, 255, 255);
-    --light__: rgb(204, 204, 204);
-    ---trans-white: hsl(0 0% 100% / 0.1);
+    --dark-0: #111518;
+    --dark-1: #182024;
+    --dark-2: #222a31;
+    --dark-3: #38434f;
+    --light-0: #ffffff;
+    --light-1: #f9f9f9;
+    --light-2: #eef0f2;
+    --light-3: #dadee1;
+
+    --primary-text: #ffffff;
+    --primary-text-dark: #222222;
+    --secondary-text: #afbec4;
+    --secondary-text-dark: #455a63;
+    --third-dark: #424242;
+
+    --red: #c00400;
+    --blue: #036ebe;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   }
   .signup-empty {
     @apply md:bg-red-400 md:outline md:outline-red-200;

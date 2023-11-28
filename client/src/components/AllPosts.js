@@ -25,7 +25,9 @@ function Post({ props }) {
   //TODO make like to be a react ccomponent
 
   const style = `${
-    themeMode ? "bg-red-400" : "bg-[#080B13]"
+    themeMode
+      ? "bg-[var(--light-1)]"
+      : "bg-[var(--dark-2)] text-[var(--secondary-text)]"
   } w-full  min-h-[200px] border-t-[1px] border-black flex flex-col items-center justify-between  md:cursor-pointer`;
 
   return (

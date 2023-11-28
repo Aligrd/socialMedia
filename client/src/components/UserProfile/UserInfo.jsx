@@ -1,12 +1,16 @@
 import React from 'react'
-import SQLDateParser from '../util/SQLDateParser'
+import SQLDateParser from '../util/SQLDateParser';
+import { useContext } from 'react';
+import ThemeContext  from "../../Context/ThemeContext"
+
 const UserInfo = (userData) => {
+  const [theme , setTheme] = useContext(ThemeContext)
 
   return (
-    <div className='w-full flex flex-col justify-center'>
-        <h1 className='w-screen text-center'>اطلاعات کاربر :</h1>
-          <div className="border border-1 border-red-200 p-10 text-right">            
-            <div className="flex flex-row-reverse justify-evenly">
+    <div className=' w-full h-full flex flex-col justify-center md:w-1/2'>
+        <h1 className='w-screen text-center '>:اطلاعات کاربر</h1>
+          <div className="border border-1 border-black w-[50%] self-center ">            
+            <div className=" flex flex-row-reverse justify-evenly">
               <h1>: نام کاربر</h1>
               <h1>{userData.username} </h1>
             </div>

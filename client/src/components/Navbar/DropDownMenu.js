@@ -54,15 +54,13 @@ const DropDownMenu = ({ clickState }) => {
               </div>
             ) : (
               <div className="flex flex-col text-4xl ">
-                <Link to="/profile" className="">
-                  <div className="flex my-10">
-                    <button className="p-1 border px-6 bg-blue-300 rounded-lg mr-4">
-                      {userAuthContext.username}
-                    </button>
-                    <h1>:کاربر</h1>
-                  </div>
-                  <span className="w-[calc(100vw-20px)] h-[2px] bg-black"></span>
-                </Link>
+                <div className="flex my-10">
+                  <Link to={`/profile/${userAuthContext.id}`} className="">
+                    {userAuthContext.username}
+                  </Link>
+                  <h1>:کاربر</h1>
+                </div>
+                <span className="w-[calc(100vw-20px)] h-[2px] bg-black"></span>
                 <button
                   className="h-[2em]  bg-white border border-2 border-blue-400 rounded-lg  mt-20 text-red-600 flex items-center justify-center "
                   onClick={logOut}
