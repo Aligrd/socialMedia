@@ -65,14 +65,17 @@ const NavbarLoginSection = () => {
       className={`${themeWithPrimaryText(
         theme,
         2
-      )} flex flex-row justify-between`}
+      )} bg-transparent flex flex-row justify-between`}
     >
       {!authState.authStatus ? (
-        <div className={`${themeWithPrimaryText(theme, 2)}`}>
+        <div className={`${themeWithPrimaryText(theme, 2)} flex`}>
           <DarkModeSwitch
             checked={theme}
-            onChange={() => setTheme(!theme)}
-            className="mr-2 hover:opacity-90 self-center "
+            onChange={() => {
+              localStorage.setItem("theme", JSON.stringify(!theme));
+              setTheme(!theme);
+            }}
+            className=" mr-2 hover:opacity-90 self-center "
             // style={{ marginBottom: "2rem" }}
             size={30}
             moonColor="#333"
@@ -86,7 +89,7 @@ const NavbarLoginSection = () => {
             <h3 className="">ورود</h3>
           </Link>
           <Link
-            className="p-3 bg-blue-400 border border-1 rounded-md"
+            className="mx-2 p-3 bg-blue-400 border border-1 rounded-md"
             to="/signup"
           >
             <h3 className="">ثبت نام</h3>
@@ -94,26 +97,43 @@ const NavbarLoginSection = () => {
         </div>
       ) : (
         <>
+          <DarkModeSwitch
+            checked={theme}
+            onChange={() => {
+              localStorage.setItem("theme", JSON.stringify(!theme));
+              setTheme(!theme);
+            }}
+            className=" mr-2 hover:opacity-90 self-center "
+            // style={{ marginBottom: "2rem" }}
+            size={30}
+            moonColor="#333"
+            sunColor="#efefef"
+            animationProperties={defaultProperties}
+          />
           <Link
-            className="bg-green-200 border border-1 border-red-900 rounded-md p-3 mr-2 hover:bg-green-100"
+            className={`${
+              !theme ? "bg-slate-900" : "bg-slate-300"
+            } border border-1 border-red-900 rounded-md p-3 mr-2 hover:scale-105`}
             to={`/profile/${authState.id}`}
           >
             {authState.username}
           </Link>
           <button
-            className="bg-green-200 border border-1 border-red-900 rounded-md p-3 mr-2 hover:scale-105"
+            className={`${
+              !theme ? "bg-slate-900" : "bg-slate-300"
+            } border border-1 border-red-900 rounded-md p-3 mr-2 hover:scale-105`}
             onClick={logOut}
           >
             خروج
           </button>
         </>
       )}
-      <button
+      {/* <button
         className="p-2 bg-red-500 cursor-pointer"
         onClick={() => setTheme(!theme)}
       >
         Theme
-      </button>
+      </button> */}
     </div>
   );
 };

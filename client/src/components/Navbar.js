@@ -24,9 +24,7 @@ const Navbar = () => {
       <Link to="/">
         <h2 className="text-2xl ml-10">Social Media</h2>
       </Link>
-      <div className="hidden md:block ">
-        <Search />
-      </div>
+      <div className="hidden md:block ">{/* <Search /> */}</div>
       <div className="block md:hidden">
         <NavMenu />
       </div>

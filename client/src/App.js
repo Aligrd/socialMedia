@@ -16,8 +16,8 @@ import NotAuth from "./User/NotAuth";
 //Contexts
 import AuthContext from "./Context/AuthContext";
 import ThemeContext from "./Context/ThemeContext";
+import { SwitchThemeHelper } from "./Context/ThemeChnageHelper";
 import Profile from "./components/UserProfile/Profile";
-import Shit from "./Shit";
 
 function App() {
   //! configuration for axios
@@ -26,7 +26,7 @@ function App() {
 
   //! states
   // const [user, setUser] = useState({});
-  const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("theme")));
   const [authState, setAuthState] = useState({
     username: undefined,
     id: undefined,
@@ -80,7 +80,6 @@ function App() {
                 <Route path="/signup" exact Component={SignUp} />
                 <Route path="/login" exact Component={Login} />
                 <Route path="profile/:id" Component={Profile} />
-                <Route path="/shit" Component={Shit} />
                 {authState.authStatus ? (
                   <>
                     <Route path="/create" exact Component={CreatePost} />

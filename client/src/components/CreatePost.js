@@ -29,14 +29,18 @@ function CreatePost() {
     if (title.length === 0) {
       setTitleErr("موظوع پست نمی تواند خالی باشد");
     } else {
-      // axios
-      //   .post("http://localhost:3001/posts", {title:title  , postText:postContent }, {
-      //     headers: { accessToken: localStorage.getItem("accessToken") },
-      //   })
-      //   .then((res) => {
-      //     console.log(res.data);
-      //     !res.data.error ? navigate("/") : console.log("post didnt submitted");
-      //   });
+      axios
+        .post(
+          "http://localhost:3001/posts",
+          { title: title, postText: postContent },
+          {
+            headers: { accessToken: localStorage.getItem("accessToken") },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          !res.data.error ? navigate("/") : console.log("post didnt submitted");
+        });
     }
   };
 

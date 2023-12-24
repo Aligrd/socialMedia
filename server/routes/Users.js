@@ -7,6 +7,8 @@ const randomStringGenerator = require("randomstring");
 const { Users } = require("../models"); //user model
 const _db = require("../models/index");
 const { validateToken } = require("../middlewares/AuthMiddleware");
+const sendMail = require("../util/emailService");
+
 router.get("/", async (req, res) => {
   const usersList = await Users.findAll();
   res.json(usersList);
@@ -54,6 +56,16 @@ router.post("/register", async (req, res) => {
         email: email,
         password: hashed,
       });
+
+      //! send email to registred user
+      const mailData = {
+        from: "aligrd133@gmail.com",
+        to: email,
+        subject: "خوش امدید",
+        text: `${username} خوش امدید به سایت خودتون`,
+      };
+      
+      sendMail(mailData);
     });
     res.json(`user ${username} created`);
   }

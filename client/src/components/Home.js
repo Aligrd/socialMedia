@@ -20,6 +20,7 @@ function Home() {
 
   //! make another component DETAIL and set a onmouse event to certain component to change isHovering and show the Detail Component
 
+  
   useEffect(() => {
     axios.get("http://localhost:3001/posts").then((res) => {
       setData(res.data);

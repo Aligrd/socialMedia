@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext";
+import ThemeContext from "../../Context/ThemeContext";
+import {
+  themeWithPrimaryText,
+  themeWithSecondaryText,
+} from "../../Context/ThemeChnageHelper";
 import {
   FaPlus,
   FaHome,
@@ -13,9 +18,12 @@ import {
 
 const NavigationSide = () => {
   const [user, setUser] = useContext(AuthContext);
+  const [theme, setTheme] = useContext(ThemeContext);
 
   return (
-    <aside className=" hidden w-1/5  md:block ">
+    <aside
+      className={`${themeWithPrimaryText(theme, 1)}  hidden w-1/3  md:flex justify-center`}
+    >
       <div className=" h-1/2 flex flex-col w-20 items-end justify-around mr-4">
         <Link
           to="/"
@@ -48,12 +56,13 @@ const NavigationSide = () => {
         </Link>
       </div>
       {user.authStatus && (
-        <div className="flex justify-center items-start  hover:text-stone-600 cursor-pointer">
-          <Link className="" to="/create">
+        <Link className="" to="/create">
+          <div className="flex justify-center items-start  hover:text-stone-600 cursor-pointer">
             <h1 className="">پست</h1>
-          </Link>
-          <FaPlus className="relative top-1 ml-1" />
-        </div>
+
+            <FaPlus className="relative top-1 ml-1" />
+          </div>
+        </Link>
       )}
     </aside>
   );

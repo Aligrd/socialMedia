@@ -10,6 +10,7 @@ import axios from "axios";
 import AuthContext from "../Context/AuthContext";
 import AutoCompleteText from "../components/util/LandingText";
 import LoginContainer from "./LoginContainer";
+import ThemeContent from "../Context/ThemeContext";
 const error = {
   credentials: "نام کاربری یا کلمه عبود نادرست می باشد",
   leftEmpty: "نام کاربری یا کلمه عبور نمیتواند خالی باشد",
@@ -23,7 +24,10 @@ function Login() {
     username: "",
     password: "",
   });
-  const [authState, setAuthState] = useContext(AuthContext);
+  const [authState, setAuthState] = useContext(AuthContext); //! authetication context
+
+  const [theme, setTheme] = useContext(ThemeContent); //! theme context
+
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -101,10 +105,19 @@ function Login() {
   };
 
   return (
-    <div className="bg-stone-200 h-full w-full flex justify-center items-center ">
-      <div className="bg-[#a4bade] w-[70vw] h-4/5 mt-12 min-w-[800px] hidden items-center justify-center rounded-lg md:flex">
+    <div
+      className={`${
+        theme ? "bg-stone-200" : "bg-stone-800"
+      } h-full w-full flex justify-center items-center`}
+    >
+      <div
+        className={`bg-${
+          theme ? "[#a4bade]" : "[#354661]"
+        } w-[70vw] h-4/5 mt-12 min-w-[800px] hidden items-center justify-center rounded-lg md:flex`}
+      >
         <AutoCompleteText str={"خوش آمدید"} />
       </div>
+
       <div>
         <LoginContainer
           credentialState={[credential, setCredentials]}
